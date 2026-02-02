@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Алдияр| Электроника & Фото</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* шапка */
+        header {
+            background: rgba(15, 12, 41, 0.95);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00d4ff, #ff00ea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #00d4ff, #ff00ea);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Хих */
+        .hero {
+            margin-top: 80px;
+            padding: 100px 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #00d4ff, #ff00ea, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient 3s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero p {
+            font-size: 22px;
+            color: #b8b8b8;
+            margin-bottom: 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #00d4ff, #0099ff);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.5);
+        }
+
+        /* Услуги оформ */
+        .services {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 30px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(45deg, #00d4ff, #ff00ea);
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+
+        .service-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .service-card:hover {
+            border-color: #00d4ff;
+            box-shadow: 0 25px 50px rgba(0, 212, 255, 0.4), 
+                        0 0 50px rgba(0, 212, 255, 0.2),
+                        inset 0 0 30px rgba(0, 212, 255, 0.1);
+        }
+
+        .service-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #00d4ff;
+        }
+
+        .service-card p {
+            color: #b8b8b8;
+            line-height: 1.6;
+        }
+
+        /* Локация оформ */
+        .location {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 60px 30px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .location-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .location-info h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: #00d4ff;
+            text-align: center;
+        }
+
+        .location-details {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .location-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .location-item:hover {
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateX(10px);
+        }
+
+        .location-item-icon {
+            font-size: 24px;
+            color: #00d4ff;
+        }
+
+        /* Контакты оформ */
+        .contact {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 30px;
+            text-align: center;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .contact-card:hover {
+            border-color: #ff00ea;
+            box-shadow: 0 25px 50px rgba(255, 0, 234, 0.4),
+                        0 0 50px rgba(255, 0, 234, 0.2),
+                        inset 0 0 30px rgba(255, 0, 234, 0.1);
+        }
+
+        .contact-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .contact-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #ff00ea;
+        }
+
+        .contact-card p {
+            color: #b8b8b8;
+        }
+
+        .contact-card a {
+            color: #00d4ff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-card a:hover {
+            color: #ff00ea;
+        }
+
+        footer {
+            background: rgba(15, 12, 41, 0.95);
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 80px;
+        }
+
+        footer p {
+            color: #b8b8b8;
+        }
+
+        /* Летающие частицы */
+        .particle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: #00d4ff;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 15s infinite;
+            opacity: 0.4;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            25% {
+                transform: translateY(-100px) translateX(50px);
+            }
+            50% {
+                transform: translateY(-200px) translateX(-50px);
+            }
+            75% {
+                transform: translateY(-100px) translateX(100px);
+            }
+        }
+
+        /* Мерцающие звёздочки */
+        .star {
+            position: fixed;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: twinkle 3s ease-in-out infinite;
+            box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+            z-index: 1;
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(1);
+                box-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.8);
+                box-shadow: 0 0 8px rgba(100, 200, 255, 1), 0 0 12px rgba(255, 100, 200, 0.8);
+            }
+        }
+
+        /* Волны от клика */
+        .ripple {
+            position: fixed;
+            border-radius: 50%;
+            border: 2px solid rgba(0, 212, 255, 0.6);
+            pointer-events: none;
+            animation: ripple-effect 1s ease-out;
+            z-index: 9999;
+        }
+
+        @keyframes ripple-effect {
+            from {
+                width: 0;
+                height: 0;
+                opacity: 1;
+            }
+            to {
+                width: 400px;
+                height: 400px;
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .nav-links {
+                gap: 15px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Цветные летающие частицы -->
+    <div class="particle" style="top: 10%; left: 10%; animation-delay: 0s;"></div>
+    <div class="particle" style="top: 50%; left: 80%; animation-delay: 2s;"></div>
+    <div class="particle" style="top: 80%; left: 20%; animation-delay: 4s;"></div>
+    <div class="particle" style="top: 30%; left: 60%; animation-delay: 6s;"></div>
+    <div class="particle" style="top: 70%; left: 40%; animation-delay: 8s;"></div>
+    <div class="particle" style="top: 15%; left: 85%; animation-delay: 1s; background: #ff00ea;"></div>
+    <div class="particle" style="top: 45%; left: 15%; animation-delay: 3s;"></div>
+    <div class="particle" style="top: 60%; left: 70%; animation-delay: 5s; background: #a855f7;"></div>
+    <div class="particle" style="top: 25%; left: 35%; animation-delay: 7s;"></div>
+    <div class="particle" style="top: 85%; left: 55%; animation-delay: 9s; background: #ff00ea;"></div>
+    <div class="particle" style="top: 5%; left: 45%; animation-delay: 1.5s;"></div>
+    <div class="particle" style="top: 55%; left: 25%; animation-delay: 3.5s; background: #a855f7;"></div>
+    <div class="particle" style="top: 75%; left: 90%; animation-delay: 5.5s;"></div>
+    <div class="particle" style="top: 35%; left: 5%; animation-delay: 7.5s;"></div>
+    <div class="particle" style="top: 90%; left: 65%; animation-delay: 9.5s;"></div>
+    <div class="particle" style="top: 20%; left: 50%; animation-delay: 2.5s; background: #ff00ea;"></div>
+    <div class="particle" style="top: 65%; left: 75%; animation-delay: 4.5s;"></div>
+    <div class="particle" style="top: 40%; left: 30%; animation-delay: 6.5s; background: #a855f7;"></div>
+    <div class="particle" style="top: 12%; left: 68%; animation-delay: 8.5s;"></div>
+    <div class="particle" style="top: 95%; left: 12%; animation-delay: 10s;"></div>
+
+    <!-- Мерцающие переливающиеся звёздочки -->
+    <div class="star" style="top: 8%; left: 15%; animation-delay: 0s;"></div>
+    <div class="star" style="top: 22%; left: 78%; animation-delay: 0.5s;"></div>
+    <div class="star" style="top: 45%; left: 92%; animation-delay: 1s;"></div>
+    <div class="star" style="top: 67%; left: 8%; animation-delay: 1.5s;"></div>
+    <div class="star" style="top: 88%; left: 45%; animation-delay: 2s;"></div>
+    <div class="star" style="top: 12%; left: 42%; animation-delay: 0.3s;"></div>
+    <div class="star" style="top: 34%; left: 18%; animation-delay: 0.8s;"></div>
+    <div class="star" style="top: 56%; left: 63%; animation-delay: 1.3s;"></div>
+    <div class="star" style="top: 78%; left: 88%; animation-delay: 1.8s;"></div>
+    <div class="star" style="top: 92%; left: 28%; animation-delay: 2.3s;"></div>
+    <div class="star" style="top: 18%; left: 58%; animation-delay: 0.6s;"></div>
+    <div class="star" style="top: 42%; left: 38%; animation-delay: 1.1s;"></div>
+    <div class="star" style="top: 63%; left: 72%; animation-delay: 1.6s;"></div>
+    <div class="star" style="top: 85%; left: 15%; animation-delay: 2.1s;"></div>
+    <div class="star" style="top: 28%; left: 85%; animation-delay: 0.4s;"></div>
+    <div class="star" style="top: 52%; left: 48%; animation-delay: 0.9s;"></div>
+    <div class="star" style="top: 72%; left: 22%; animation-delay: 1.4s;"></div>
+    <div class="star" style="top: 95%; left: 68%; animation-delay: 1.9s;"></div>
+    <div class="star" style="top: 6%; left: 32%; animation-delay: 0.2s;"></div>
+    <div class="star" style="top: 38%; left: 95%; animation-delay: 0.7s;"></div>
+    <div class="star" style="top: 58%; left: 5%; animation-delay: 1.2s;"></div>
+    <div class="star" style="top: 82%; left: 52%; animation-delay: 1.7s;"></div>
+    <div class="star" style="top: 14%; left: 25%; animation-delay: 2.2s;"></div>
+    <div class="star" style="top: 48%; left: 82%; animation-delay: 0.5s;"></div>
+    <div class="star" style="top: 68%; left: 35%; animation-delay: 1s;"></div>
+
+    <!-- ЛОГО -->
+    <header>
+        <nav>
+            <div class="logo">Алдияр</div>
+            <ul class="nav-links">
+                <li><a href="#services">Услуги</a></li>
+                <li><a href="#location">Местоположение</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Шапка -->
+    <section class="hero">
+        <h1>Электроника & Фотоуслуги</h1>
+        <p>Фото на документы, печать, ремонт смартфонов и продажа электроники</p>
+        <a href="#services" class="cta-button">Узнать больше</a>
+    </section>
+
+    <!-- Услуги -->
+    <section class="services" id="services">
+        <h2 class="section-title">Наши услуги</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">📸</div>
+                <h3>Фото на документы</h3>
+                <p>Быстрая съёмка фото на паспорт, визу, удостоверения и другие документы</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🖨️</div>
+                <h3>Печать фото</h3>
+                <p>Печать фотографий любых форматов</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔧</div>
+                <h3>Ремонт смартфонов</h3>
+                <p>Профессиональный ремонт телефонов: замена экранов, батарей, разъёмов</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🧹</div>
+                <h3>Чистка устройств</h3>
+                <p>Профессиональная чистка смартфонов, ноутбуков и другой электроники</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🎧</div>
+                <h3>Наушники</h3>
+                <p>Большой выбор наушников: проводные, беспроводные, TWS</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📱</div>
+                <h3>Смартфоны и аксессуары</h3>
+                <p>Продажа телефонов, чехлов, защитных стёкол и других аксессуаров</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Локация, время и тд -->
+    <section class="location" id="location">
+        <div class="location-content">
+            <div class="location-info">
+                <h2>Где нас найти</h2>
+                <div class="location-details">
+                    <div class="location-item">
+                        <span class="location-item-icon">📍</span>
+                        <span>г. Абай 123</span>
+                    </div>
+                    <div class="location-item">
+                        <span class="location-item-icon">🕐</span>
+                        <span>Пн-Пт: 10:00 - 20:00<br>Сб-Вс: 11:00 - 18:00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section class="contact" id="contact">
+        <h2 class="section-title">Связаться с нами</h2>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <div class="contact-icon">📞</div>
+                <h3>Телефон</h3>
+                <p><a href="tel:+77001234567">+7 (700) 123-45-67</a></p>
+                <p><a href="tel:+77001234568">+7 (700) 123-45-68</a></p>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">✉️</div>
+                <h3>Email</h3>
+                <p><a href="mailto:info@aldiyar.kz">info@aldiyar.kz</a></p>
+                <p><a href="mailto:sales@aldiyar.kz">sales@aldiyar.kz</a></p>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">💬</div>
+                <h3>Мессенджеры</h3>
+                <p><a href="#">WhatsApp</a></p>
+                <p><a href="#">Telegram</a></p>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">🌐</div>
+                <h3>Соцсети</h3>
+                <p><a href="#">Instagram</a></p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Алдияр. Все права защищены.</p>
+    </footer>
+
+    <script>
+        // Плавная прокрутка
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Анимация при скролле
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .contact-card, .location').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease-out';
+            observer.observe(card);
+        });
+
+        //  эффект для звездочек
+        document.addEventListener('mousemove', (e) => {
+            const particles = document.querySelectorAll('.particle');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+
+            particles.forEach((particle, index) => {
+                const speed = (index + 1) * 15;
+                particle.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+            });
+        });
+
+        // 3D эффект наклона карточек при движении мыши
+        document.querySelectorAll('.service-card, .contact-card').forEach(card => {
+            card.addEventListener('mousemove', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 15;
+                const rotateY = (centerX - x) / 15;
+                
+                this.style.transform = `translateY(-10px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) rotateX(0) rotateY(0) scale(1)';
+            });
+        });
+
+        // Волны от клика мыши
+        document.addEventListener('click', function(e) {
+            const ripple = document.createElement('div');
+            ripple.className = 'ripple';
+            ripple.style.left = e.clientX - 200 + 'px';
+            ripple.style.top = e.clientY - 200 + 'px';
+            document.body.appendChild(ripple);
+            
+            setTimeout(() => ripple.remove(), 1000);
+        });
+
+        // Дополнительное неоновое свечение при наведении
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.boxShadow = '0 0 60px rgba(0, 212, 255, 0.6), 0 0 100px rgba(0, 212, 255, 0.3), inset 0 0 40px rgba(0, 212, 255, 0.15)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.boxShadow = '';
+            });
+        });
+
+        document.querySelectorAll('.contact-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.boxShadow = '0 0 60px rgba(255, 0, 234, 0.6), 0 0 100px rgba(255, 0, 234, 0.3), inset 0 0 40px rgba(255, 0, 234, 0.15)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.boxShadow = '';
+            });
+        });
+    </script>
+</body>
+</html>
